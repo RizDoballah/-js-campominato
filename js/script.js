@@ -4,12 +4,29 @@
 // La partita termina quando il giocatore inserisce un numero “vietato”, ovvero presente nella lista di numeri random, o raggiunge il numero massimo possibile di tentativi consentiti.
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito
 
-var computerNumber = [];
-for (var i = 0; i < 16; i++){
-  var numero = getRandom(1, 100);
-  computerNumber.push(numero);
+var arrayComputerNumber = [];
+while (arrayComputerNumber.length < 16){
+  var computerNumber = getRandom(1, 100);
+  if (arrayComputerNumber.includes(computerNumber) == false) {
+    arrayComputerNumber.push(computerNumber);
+  }
 }
-console.log(computerNumber);
+console.log(arrayComputerNumber);
+
+var arrayUserNumber = [];
+while (arrayUserNumber.length < 84 && arrayUserNumber.includes(userNumber) == false){
+  var userNumber = parseInt(prompt('inserisci un numero tra 1 e 100'));
+  if (arrayComputerNumber.includes(computerNumber) == true) {
+    alert('Hai terminato il gioco');
+  }
+  else if (arrayUserNumber[userNumber] == userNumber) {
+    alert('Questo numero esiste, inserisci un nuovo numero');
+  }
+  else {
+    arrayUserNumber.push(userNumber);
+  }
+
+}
 
 
 function getRandom(min, max) {
