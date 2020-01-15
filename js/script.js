@@ -17,9 +17,19 @@ var arrayUserNumber = [];
 var maxTries = 5;
 var points = 0;
 var message = 'Hai vinto';
+var min;
+var max;
+var difficulty = 0;
+
+
+
 var findNumber = false;
 while (arrayUserNumber.length < maxTries && findNumber == false){
-  var userNumber = parseInt(prompt('inserisci un numero tra 1 e 100'));
+  var userNumber = false;
+  while (checkRange(1, 100, userNumber) == false) {
+    var userNumber = parseInt(prompt('inserisci un numero tra 1 e 100'));
+    console.log(userNumber);
+  }
   if (arrayUserNumber.includes(userNumber) == false) {
     arrayUserNumber.push(userNumber);
   }
@@ -30,7 +40,7 @@ while (arrayUserNumber.length < maxTries && findNumber == false){
     message = 'Hai perso'
     findNumber = true;
   }
-  else {
+    else {
     points++;
   }
 
