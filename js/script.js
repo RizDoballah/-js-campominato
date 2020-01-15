@@ -14,22 +14,41 @@ while (arrayComputerNumber.length < 16){
 console.log(arrayComputerNumber);
 
 var arrayUserNumber = [];
-while (arrayUserNumber.length < 84 && arrayUserNumber.includes(userNumber) == false){
+var maxTries = 5;
+var points = 0;
+var message = 'Hai vinto';
+var findNumber = false;
+while (arrayUserNumber.length < maxTries && findNumber == false){
   var userNumber = parseInt(prompt('inserisci un numero tra 1 e 100'));
-  if (arrayComputerNumber.includes(computerNumber) == true) {
-    alert('Hai terminato il gioco');
-  }
-  else if (arrayUserNumber[userNumber] == userNumber) {
-    alert('Questo numero esiste, inserisci un nuovo numero');
+  if (arrayUserNumber.includes(userNumber) == false) {
+    arrayUserNumber.push(userNumber);
   }
   else {
-    arrayUserNumber.push(userNumber);
+    alert('Questo numero esiste, inserisci un nuovo numero');
+  }
+    if (arrayComputerNumber.includes(userNumber) == true){
+    message = 'Hai perso'
+    findNumber = true;
+  }
+  else {
+    points++;
   }
 
 }
+console.log(message + ' ' + points);
 
-
+//--------------------
+//Funzioni
+//Funzione che genera un numero random
 function getRandom(min, max) {
   var random = Math.floor(Math.random() * (max - min + 1) ) + min;
   return random;
+}
+//Funzione che controlla se un numero si trova in un certo raggiunge
+function checkRange (min, max, number) {
+  var result = false;
+  if (number >= min && number <= max) {
+    result = true;
+  }
+  return result;
 }
