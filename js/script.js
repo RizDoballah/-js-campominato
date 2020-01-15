@@ -4,6 +4,7 @@
 // La partita termina quando il giocatore inserisce un numero “vietato”, ovvero presente nella lista di numeri random, o raggiunge il numero massimo possibile di tentativi consentiti.
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito
 
+//genero 16 numeri random e controllo se sono tutti diversi
 var arrayComputerNumber = [];
 while (arrayComputerNumber.length < 16){
   var computerNumber = getRandom(1, 100);
@@ -13,20 +14,40 @@ while (arrayComputerNumber.length < 16){
 }
 console.log(arrayComputerNumber);
 
+// variabile che mi servono
 var arrayUserNumber = [];
-var maxTries = 5;
+var maxTries;
 var points = 0;
 var message = 'Hai vinto';
 var min;
 var max;
-var difficulty = 0;
+
+// chiedere all'utente con quale grado di difficoltà vuole giocare e controllo le sue risposte
+var levelChoices = 0;
+do {
+var level = parseInt(prompt('da 0 a 2, che grado di difficoltà scegli?'));
+levelChoices++;
+} while (checkRange(0, 2, level) == false && levelChoices < 3);
+if (level == 0) {
+  maxTries= 84;
+  min = 1;
+  max = 100;
+} else if (level == 1){
+  maxTries= 64;
+  min = 1;
+  max = 80;
+} else if (level == 2) {
+  maxTries= 34;
+  min = 1;
+  max = 50;
+}
 
 
-
+//chiedere all'uttente un numero compreso tra il range che ha scelto e controllo le sue risposte
 var findNumber = false;
 while (arrayUserNumber.length < maxTries && findNumber == false){
   var userNumber = false;
-  while (checkRange(1, 100, userNumber) == false) {
+  while (checkRange(min, max, userNumber) == false && isNaN(userNumber) == false) {
     var userNumber = parseInt(prompt('inserisci un numero tra 1 e 100'));
     console.log(userNumber);
   }
